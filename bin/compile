@@ -38,7 +38,7 @@ fi
 source "$BIN_DIR/steps/hooks/pre_compile"
 
 # Install libuv
-apt-get install automake libtool
+# apt-get install automake libtool
 cd "$LIBUV_ROOT"
 curl -O http://dist.libuv.org/dist/v1.8.0/libuv-v1.8.0.tar.gz
 tar xzf libuv-v1.8.0.tar.gz
