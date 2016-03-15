@@ -45,7 +45,7 @@ tar xzf libuv-v1.8.0.tar.gz
 cd libuv-v1.8.0 && sh autogen.sh
 ./configure --enable-static --disable-shared
 make
-sudo make install
+# sudo make install
 cd "$BUILD_DIR"
 
 # Install Swift
@@ -73,7 +73,7 @@ export PATH="$CACHE_DIR/clang-$CLANG_VERSION/clang+llvm-$CLANG_VERSION-x86_64-li
 cd $BUILD_DIR
 echo "-----> Building Package"
 export CCFlags="-Xcc -I/$LIBUV_ROOT/libuv-v1.80/include -Xlinker -L/$LIBUV_ROOT/libuv-v1.80/out/Debug"
-swift build --configuration release
+swift build --configuration release $CCFlags
 
 # These should be statically linked, seems a swift bug
 echo "-----> Copying dynamic libraries"
