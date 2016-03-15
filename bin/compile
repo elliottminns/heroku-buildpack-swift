@@ -15,6 +15,12 @@ CLANG_VERSION=3.7.0
 
 mkdir -p "$CACHE_DIR"
 
+export LIBUV_ROOT = "$CACHE_DIR/libuv"
+mkdir "$LIBUV_ROOT"
+
+#Fetch libuv
+
+
 # Fetch swiftenv
 unset GIT_DIR
 git submodule update --init --recursive >/dev/null
@@ -31,6 +37,16 @@ fi
 # Pre compile hook
 source "$BIN_DIR/steps/hooks/pre_compile"
 
+# Install libuv
+sudo apt-get install automake libtool
+cd "$LIBUV_ROOT"
+curl -O http://dist.libuv.org/dist/v1.8.0/libuv-v1.8.0.tar.gz
+tar xzf libuv-v1.8.0.tar.gz
+cd libuv-v1.8.0 && sh autogen.sh
+./configure --enable-static --disable-shared
+make && sudo make install
+cd "$BUILD_DIR"
+
 # Install Swift
 cd "$BUILD_DIR"
 SWIFT_PREFIX="$(swiftenv prefix || true)"
@@ -41,6 +57,8 @@ if ! [ -d "$SWIFT_PREFIX" ]; then
 else
   swiftenv rehash
 fi
+
+# Install libuv
 
 if [[ ! -d "$CACHE_DIR/clang-$CLANG_VERSION" ]]; then
   cd $CACHE_DIR

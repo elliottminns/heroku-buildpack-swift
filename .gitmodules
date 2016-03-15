@@ -1,3 +1,6 @@
 [submodule "swiftenv"]
 	path = swiftenv
 	url = http://github.com/kylef/swiftenv
+[submodule "libuv"]
+	path = libuv
+	url = https://github.com/libuv/libuv.git
