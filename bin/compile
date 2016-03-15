@@ -15,7 +15,7 @@ CLANG_VERSION=3.7.0
 
 mkdir -p "$CACHE_DIR"
 
-export LIBUV_ROOT = "$CACHE_DIR/libuv"
+export LIBUV_ROOT="$CACHE_DIR/libuv"
 mkdir "$LIBUV_ROOT"
 
 #Fetch libuv
